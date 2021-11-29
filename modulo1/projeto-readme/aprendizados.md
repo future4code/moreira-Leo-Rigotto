@@ -1,0 +1,3 @@
+# Aprendizados da semana
+
+Nessa semana inicial de curso tivemos nosso primeiro contato com as plataformas utilizadas tanto para **estudar e trabalhar** em equipe/solo - como _Slack_, _Zoom_, _Vimeo_, _Notion_ -, e também pudemos iniciar nossos passos nas **linhas de comando**, utilizando o terminal. A cereja no bolo foi aprender sobre **Git**, criar nossos próprios repositórios e branches. Foi uma semana **divertida** e cheia de **entusiasmo**.
