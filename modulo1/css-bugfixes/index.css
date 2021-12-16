@@ -106,6 +106,7 @@ div:last-child {
 table {
     text-align: center;
     width: 60%;
+    margin: auto;
 }
 
 .tabela-compras img {
