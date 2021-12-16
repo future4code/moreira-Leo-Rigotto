@@ -43,6 +43,7 @@ div>p:first-child {
     color: white;
     display: block;
     margin: auto;
+    margin-top: 15%;
 }
 
 .botao-amarelo:hover {
@@ -83,11 +84,12 @@ div>p:first-child {
 
 #container-para-comprar {
     background-color: #e7eb90;
+    
 }
 
 #container-para-comprar>p {
     color: #c44f00;
-    padding: 100px 0;
+    padding: 100px ;
     font-size: 60px;
 }
 
@@ -150,6 +152,8 @@ td button {
     border-radius: 5px;
     font-size: 10px;
     color: black;
+    display: block;
+    margin: auto;
 }
 
 #back-button:hover {
