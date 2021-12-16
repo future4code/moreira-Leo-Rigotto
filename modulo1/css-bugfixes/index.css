@@ -7,6 +7,7 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 h2 {
@@ -120,7 +121,7 @@ td button {
 }
 
 .tabela-compras button:hover{
-background-color: #dbc358;
+    background-color: #dbc358;
 }
 
 .tabela-compras button:active{
@@ -130,6 +131,13 @@ background-color: #dbc358;
 .container-do-search {
     margin-top: 20px;
     height: 100px;
+}
+
+.container-do-search input{
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: solid;
+    border-left-style: none;
 }
 
 
