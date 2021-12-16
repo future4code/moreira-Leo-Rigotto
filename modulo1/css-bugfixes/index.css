@@ -74,7 +74,7 @@ div>p:first-child {
 }
 
 #container-de-descricao>div {
-    width: 17%;
+    width: 19%;
     margin: auto;
 }
 
@@ -144,6 +144,13 @@ td button {
     border-left-style: none;
 }
 
+.container-do-search .icone:hover{
+    opacity: 50%;
+}
+
+.container-do-search .icone:active{
+    opacity: 100%;
+}
 
 #back-button {
     background-color: white;
