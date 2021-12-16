@@ -1,0 +1,35 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+header {
+    background-color: rgb(209, 255, 149);
+}
+
+#img-principal {
+    max-width: 50%;
+}
+
+.tiny-buss-name {
+    font-weight: bolder;
+}
+
+.redes-sociais {
+   width: 15%;
+}
+
+.product-photo {
+    width: 50%;
+    margin: 10px;
+}
+
+table.estoque {
+    padding: 10px 80px;
+}
+
+footer {
+    background-color: greenyellow;
+    width: 100%;
+    bottom: 0%;
+}
+
