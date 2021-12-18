@@ -1,3 +1,5 @@
+/* GENERAL */
+
 * {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -25,16 +27,8 @@ header div{
 }
 
 #logo-header img{
-    max-width: 40px;
-    margin: 5px 15px;
-}
-
-#logo-header h2{
-    display: inline;
-    position: absolute;
-    margin-top: 4px;
-    font-weight: normal;
-    font-stretch: condensed;
+    max-width:130px;
+    margin: 0px 15px;
 }
 
 .menu {
@@ -82,7 +76,7 @@ header div{
     to {color: white; background-color: #6667AB}
 }
 
-/* Container general styling */
+/* CONTAINER GENERAL STYLING */
 
 
 .container{
@@ -93,7 +87,7 @@ header div{
 .container img{
     max-width: 50%;
     margin-top: 5%;
-    margin-bottom: -3px;
+    margin-bottom: -7px;
 }
 
 .container h1{
@@ -137,8 +131,23 @@ header div{
     padding-bottom: 10%;
 }
 
+#portfolio p{
+    margin: auto;
+    padding: 3px;
+    max-width: 65%;
+    font-weight: 250;
+}
+
+#portfolio li{
+    display: inline;
+    margin: 1%;
+}
+
 /* ABOUT */
 
 #about {
 
 }
+
+/* CONTACT */
+
