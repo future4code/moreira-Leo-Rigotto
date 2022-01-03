@@ -1,0 +1,115 @@
+/* GENERAL */
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+ul{
+    list-style-type: none;
+}
+
+.icon{
+    width: 18px;
+    display: inline;
+    padding: 0 10px;
+}
+
+body{
+    height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+/* HEADER */
+
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: mediumvioletred;
+    padding: 10px;
+}
+
+h3{
+    display: inline;
+}
+
+#login-button{
+    padding: 3px 10px;
+}
+
+/* MAIN */
+
+h4{
+    display: inline;
+}
+
+main{
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: 250px 1fr;
+}
+
+.lateral-menu{
+    padding-top: 5px;
+    background-color: #f2d0e0;
+}
+
+.lateral-menu li{
+    font-size: medium;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+}
+
+/* PRODUCT PAGE */
+
+#product-page{
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+/* PRODUCT */
+
+.product{
+    max-width: 200px;
+    text-align: center;
+    box-shadow: 2px 2px 5px 1px darkgray;
+    margin: 15px;
+}
+
+.product img{
+    max-width: 200px;
+}
+
+h2{
+    font-size: large;
+    font-weight: bolder;
+    padding: 10px;
+}
+
+p{
+    font-size: small;
+    padding-bottom: 10px;
+}
+
+/* FOOTER */
+
+footer{
+    background-color: mediumvioletred;
+    text-align: center;
+    padding: 15px;
+}
+
+h1{
+    font-weight: bold;
+    font-size: small;
+}
