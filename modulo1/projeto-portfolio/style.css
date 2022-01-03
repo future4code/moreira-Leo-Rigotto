@@ -145,9 +145,20 @@ header div{
 
 /* ABOUT */
 
-#about {
-
+#about{
+    padding-bottom: 5%;
 }
 
 /* CONTACT */
 
+#contact{
+    background-color: #989AFF;
+    padding-bottom: 5%;
+}
+
+
+/* FOOTER */
+
+footer{
+    padding: 15px;
+}
