@@ -6,9 +6,14 @@
     text-decoration: none;
 }
 
+a{
+    color: black;
+}
+
 body{
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height: 100vh;
 }
 
 /* header */
@@ -30,18 +35,19 @@ h1{
 main{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     gap: 30px;
     margin: 30px;
 }
 
 .container{
-    border: 1px solid green;
+    border: 2px solid green;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     color: black;
-    width: 200px;
+    width: 199px;
     height: 150px;
     margin: auto;
 }
@@ -69,6 +75,7 @@ main{
 
 .video-item video{
     max-width: 80vw;
+    max-height: 60vh;
 }
 
 .video-item h2{
@@ -85,8 +92,5 @@ footer{
     color: white;
     background-color: lightslategrey;
     height: 40px;
-    position: absolute;
-    bottom: 0;
-    width: 100vw;
     padding-left: 20px;
 }
