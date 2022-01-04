@@ -1,0 +1,92 @@
+/* general */
+
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+}
+
+/* header */
+
+header{
+    background-color: orange;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+h1{
+    font-weight: normal;
+}
+
+/* main */
+
+main{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin: 30px;
+}
+
+.container{
+    border: 1px solid green;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    color: black;
+    width: 200px;
+    height: 150px;
+    margin: auto;
+}
+
+.container video{
+    width: 200px;
+}
+
+.container p{
+    margin-bottom: 8px;
+}
+
+/* .video-page{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+} */
+
+.video-item{
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    align-items: flex-start;
+}
+
+.video-item video{
+    max-width: 80vw;
+}
+
+.video-item h2{
+    align-self: flex-start;
+    margin-bottom: 10px;
+}
+
+
+/* footer */
+
+footer{
+    display: flex;
+    align-items: center;
+    color: white;
+    background-color: lightslategrey;
+    height: 40px;
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    padding-left: 20px;
+}
