@@ -1,0 +1,164 @@
+/* GENERAL */
+
+* {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #28282D;
+}
+
+/* HEADER */
+
+header {
+    position: sticky;
+    top: 0%;
+    background-color: #e0e7e3;
+    color: #6667AB;
+    box-shadow: 0px 0.5px 5px rgba(128, 128, 128, 0.575);
+}
+
+#header-line {
+    display: block;
+    padding: 2px;
+    background-color: #84A293;
+}
+
+header div{
+    display: inline;
+}
+
+#logo-header img{
+    max-width:130px;
+    margin: 0px 15px;
+}
+
+.menu {
+    margin-top: 10px;
+    float: right;
+    margin-right: 15px;
+}
+
+.menu a{
+    margin-left: 10px;
+    margin-right: 5px;
+    color: #6667AB;
+    text-decoration: none;
+    font-weight: normal;
+}
+
+.menu a:hover{
+    animation-name: menu-styling;
+    animation-duration: 700ms;
+    animation-fill-mode: both;
+}
+
+@keyframes menu-styling{
+    from {color: #6667AB;}
+    to {color: #884C5E;}
+}
+
+#say-hi-button{
+    padding: 3px 10px;
+    border: #6667AB;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 15px;
+    font-weight: bold;
+}
+
+#say-hi-button:hover{
+    animation-name: say-hi;
+    animation-duration: 600ms;
+    animation-fill-mode: both;
+}
+
+@keyframes say-hi{
+    from {color: #6667AB;}
+    to {color: white; background-color: #6667AB}
+}
+
+/* CONTAINER GENERAL STYLING */
+
+
+.container{
+    text-align: center;
+    padding-top: 3%;
+}
+
+.container img{
+    max-width: 50%;
+    margin-top: 5%;
+    margin-bottom: -7px;
+}
+
+.container h1{
+    margin: 2%;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.container h2{
+    margin: 2%;
+    font-weight: normal;
+    font-size: 30px;
+}
+
+.container h3{
+    margin-bottom: 3%;
+    font-weight: 300;
+}
+
+/* HOME */
+
+#home {
+    padding-top: 7%;
+}
+
+#avatar {
+    margin: auto;
+    display: block;
+    max-width: 20%;
+    border-radius: 50%;
+    border: #84A293;
+    border-style: solid;
+    border-width: 6px;
+    box-shadow: 0px 2px 20px rgba(128, 128, 128, 0.671);
+}
+
+/* PORTFOLIO */
+
+#portfolio {
+    background-color: #989AFF;
+    padding-bottom: 10%;
+}
+
+#portfolio p{
+    margin: auto;
+    padding: 3px;
+    max-width: 65%;
+    font-weight: 250;
+}
+
+#portfolio li{
+    display: inline;
+    margin: 1%;
+}
+
+/* ABOUT */
+
+#about{
+    padding-bottom: 5%;
+}
+
+/* CONTACT */
+
+#contact{
+    background-color: #989AFF;
+    padding-bottom: 5%;
+}
+
+
+/* FOOTER */
+
+footer{
+    padding: 15px;
+}
