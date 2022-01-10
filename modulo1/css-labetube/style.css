@@ -1,0 +1,104 @@
+/* general */
+
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+a{
+    color: black;
+}
+
+body{
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height: 100vh;
+}
+
+/* header */
+
+header{
+    background-color: orange;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+h1{
+    font-weight: normal;
+}
+
+/* main */
+
+main{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 30px;
+    padding: 30px;
+}
+
+.container{
+    border: 2px solid green;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    color: black;
+    width: 100%;
+    margin: auto;
+}
+
+.container video{
+    width: 100%;
+}
+
+.container p{
+    margin-bottom: 8px;
+}
+
+/* .video-page{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+} */
+
+.video-item{
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    align-items: flex-start;
+}
+
+.video-item video{
+    max-width: 80vw;
+    max-height: 60vh;
+}
+
+.video-item h2{
+    align-self: flex-start;
+    margin-bottom: 10px;
+}
+
+
+/* footer */
+
+footer{
+    display: flex;
+    align-items: center;
+    color: white;
+    background-color: lightslategrey;
+    height: 40px;
+    padding-left: 20px;
+}
+
+/* responsive */
+
+@media screen and (max-width: 600px) {
+    main{
+        display: flex;
+        flex-direction: column;
+    }    
+}
