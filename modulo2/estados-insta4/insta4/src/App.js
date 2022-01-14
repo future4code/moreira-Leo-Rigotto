@@ -90,12 +90,13 @@ class App extends React.Component {
       fotoPost: this.state.inputFotoPost,
     }
     const  novoArrPost = [...this.state.posts, novoPost]
+    this.setState({posts: novoArrPost})
     this.setState({
-      posts: novoArrPost
+      inputUsuario: "",
+      inputFotoUsuario: "",
+      inputFotoPost: "",
     })
-    this.setState({
-      criandoPost: false
-    })
+    this.setState({criandoPost: false})
   }
 
   render() {
@@ -132,9 +133,9 @@ class App extends React.Component {
 
     return (
       <MainContainer>
-        {post}
         {componenteNovoPost}
         <BotaoNewPost onClick={this.newPost}>{buttonText}</BotaoNewPost>
+        {post}
       </MainContainer>
     );
   }
