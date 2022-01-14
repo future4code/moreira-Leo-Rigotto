@@ -92,12 +92,14 @@ export class ChatField extends React.Component{
 
     render(){
         
-        const novaMsg = this.state.messages.msg.map(() => {
-            return <UserMessage sender={this.state.messages.msg.user} message={this.state.messages.msg.text}
+        const novaMsg = this.state.messages.map((msg) => {
+            return <div>
+            <UserMessage sender={msg.user} message={msg.text}/>
+            </div>
         })
 
         return <ChatContainer>
-
+            {novaMsg}
             <UserMessage sender={this.state.messages.msg.user} message={this.state.messages.msg.text}/>
             <FriendMessage sender={this.state.messages.msg.user} message={this.state.messages.msg.text}/>
            
