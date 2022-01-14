@@ -92,6 +92,9 @@ export class ChatField extends React.Component{
 
     render(){
         
+        const novaMsg = this.state.messages.msg.map(() => {
+            return <UserMessage sender={this.state.messages.msg.user} message={this.state.messages.msg.text}
+        })
 
         return <ChatContainer>
 
