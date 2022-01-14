@@ -80,26 +80,31 @@ export class ChatField extends React.Component{
     }
 
     sendMsg = () => {
+        let newMsgs = {...this.state.messages,
+        msg: {
+            user: this.state.inputUser,
+            text: this.state.inputMsg
+        }}
         if (this.inputUser && this.inputMsg !== ''){
         this.setState({
-            messages: {msg: {...this.state.messages.msg,
-            user: this.state.inputUser,
-            text: this.state.inputMsg}},
+            messages: {newMsgs},
             inputUser: '',
             inputMsg: ''
         })}
+        console.log(this.state.messages)
+        console.log(newMsgs)
     }
 
     render(){
         
-        const novaMsg = this.state.messages.map((msg) => {
-            return <div>
-            <UserMessage sender={msg.user} message={msg.text}/>
-            </div>
-        })
+        // const newMsg = this.state.map((msg) => {
+        //     return <UserMessage 
+        //     sender={msg.user} 
+        //     message={msg.text}/>
+        // })
 
         return <ChatContainer>
-            {novaMsg}
+            {/* {newMsg} */}
             <UserMessage sender={this.state.messages.msg.user} message={this.state.messages.msg.text}/>
             <FriendMessage sender={this.state.messages.msg.user} message={this.state.messages.msg.text}/>
            
