@@ -6,7 +6,8 @@ import { FriendMessage } from "./FriendMessage";
 const ChatContainer = styled.div`
     border: 1px solid black;
     border-radius: 15px;
-    width: 500px;
+    width: 100vw;
+    max-width: 500px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -29,6 +30,7 @@ const InputMsgStyled = styled.input`
     border-radius: 30px;
     width: 60%;
     padding: 5px 10px;
+    margin: 0px 3px;
 `
 
 const InputUserStyled = styled.input`
@@ -57,12 +59,7 @@ const SendButton = styled.button`
 export class ChatField extends React.Component{
 
     state = {
-        messages: {
-            msg: {
-                user: 'Teste',
-                text: 'Teste'
-            },
-        },
+        messages: [],
         inputUser: '',
         inputMsg: '',
     }
@@ -80,34 +77,37 @@ export class ChatField extends React.Component{
     }
 
     sendMsg = () => {
-        let newMsgs = {...this.state.messages,
-        msg: {
-            user: this.state.inputUser,
-            text: this.state.inputMsg
-        }}
-        if (this.inputUser && this.inputMsg !== ''){
+        let newMsgs = [...this.state.messages,
+            {user: this.state.inputUser,
+            text: this.state.inputMsg}
+            ]
+        if (this.state.inputUser && this.state.inputMsg !== ''){
         this.setState({
-            messages: {newMsgs},
+            messages: newMsgs,
             inputUser: '',
             inputMsg: ''
         })}
         console.log(this.state.messages)
-        console.log(newMsgs)
     }
 
     render(){
-        
-        // const newMsg = this.state.map((msg) => {
-        //     return <UserMessage 
-        //     sender={msg.user} 
-        //     message={msg.text}/>
-        // })
+
+        const novaMsg = this.state.messages.map((msg) => {
+            if(msg.user == "Eu"){
+            return <UserMessage 
+            sender={msg.user} 
+            message={msg.text}/>
+            } else {
+                return <FriendMessage 
+                sender={msg.user} 
+                message={msg.text}/>
+            }
+        })
 
         return <ChatContainer>
-            {/* {newMsg} */}
-            <UserMessage sender={this.state.messages.msg.user} message={this.state.messages.msg.text}/>
-            <FriendMessage sender={this.state.messages.msg.user} message={this.state.messages.msg.text}/>
-           
+
+            {novaMsg}
+
             <InputContainer>
 
              <InputUserStyled 
