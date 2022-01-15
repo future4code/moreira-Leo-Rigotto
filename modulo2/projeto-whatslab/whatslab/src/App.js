@@ -6,7 +6,8 @@ import styled from 'styled-components';
 const WhatsLab = styled.div`
   display: flex;
   justify-content: center;
-  height: 90vh;
+  min-height: 40vh;
+  max-height: 85vh;
   margin: 2px;
   `
 
