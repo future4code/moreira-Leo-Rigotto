@@ -42,6 +42,9 @@ const InputUserStyled = styled.input`
 `
 
 const SendButton = styled.button`
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 30px;
     width: 30px;
     border: 1px solid gray;
@@ -53,6 +56,10 @@ const SendButton = styled.button`
     }
     :active{
         background-color: seagreen;
+    }
+    img{
+        width: 18px;
+        padding-left: 3px;
     }
 `
 
@@ -87,18 +94,33 @@ export class ChatField extends React.Component{
             inputUser: '',
             inputMsg: ''
         })}
-        console.log(this.state.messages)
     }
+
+    onKeyDownSendMsg = (event) => {
+        if(event.key === "Enter"){
+            this.sendMsg()
+        }
+    }
+
+    deleteMsg = (key) => {
+        console.log("apaguei")
+        // let dltMsg = this.state.messages.splice(key, 1)
+        // this.setState({
+        //     messages: dltMsg
+        // })
+    }
+
 
     render(){
 
-        const novaMsg = this.state.messages.map((msg) => {
-            if(msg.user == "Eu"){
-            return <UserMessage 
-            sender={msg.user} 
-            message={msg.text}/>
+        const novaMsg = this.state.messages.map((msg, i) => {
+            if(msg.user.toLowerCase() === "eu"){
+                return <UserMessage
+                key={i} 
+                message={msg.text}/>
             } else {
                 return <FriendMessage 
+                key={i}
                 sender={msg.user} 
                 message={msg.text}/>
             }
@@ -117,8 +139,9 @@ export class ChatField extends React.Component{
              <InputMsgStyled 
              placeholder="Mensagem"
              value={this.state.inputMsg}
-             onChange={this.onChangeMsg}/>
-             <SendButton onClick={this.sendMsg}>{'>'}</SendButton>
+             onChange={this.onChangeMsg}
+             onKeyDown={this.onKeyDownSendMsg}/>
+             <SendButton type="submit" onClick={this.sendMsg}><img src="https://cdn-icons-png.flaticon.com/512/60/60525.png" alt="Enviar"/></SendButton>
 
              </InputContainer>
 

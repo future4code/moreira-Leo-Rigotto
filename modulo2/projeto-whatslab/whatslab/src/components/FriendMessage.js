@@ -4,7 +4,7 @@ import styled from "styled-components";
 const MessageContainer = styled.div`
     border: 1px solid lightgray;
     border-radius: 10px 10px 10px 0px;
-    background-color: mediumspringgreen;
+    background-color: lightgreen;
     max-width: 80%;
     display: flex;
     flex-direction: column;

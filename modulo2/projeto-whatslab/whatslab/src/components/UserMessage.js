@@ -14,7 +14,7 @@ const MessageContainer = styled.div`
     box-shadow: 2px 4px 8px lightgray;
     p{
         margin: 0;
-        padding: 0px 10px 5px 10px;
+        padding: 5px 10px;
         word-wrap: break-word;
         max-width: 98%;
     }
@@ -31,7 +31,6 @@ export class UserMessage extends React.Component{
     render() {
         return (
              <MessageContainer>
-                <h1>{this.props.sender}</h1>
                 <p>{this.props.message}</p>
              </MessageContainer>
         );
