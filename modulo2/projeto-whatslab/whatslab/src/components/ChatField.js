@@ -8,10 +8,11 @@ const ChatContainer = styled.div`
     border-radius: 15px;
     width: 100vw;
     max-width: 500px;
+    height: 88vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    overflow: hidden;
+    overflow-y: auto;
 `
 
 // input styling
