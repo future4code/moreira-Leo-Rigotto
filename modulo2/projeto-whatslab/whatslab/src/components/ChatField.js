@@ -13,6 +13,7 @@ const ChatContainer = styled.div`
     flex-direction: column;
     justify-content: flex-end;
     overflow-y: auto;
+    box-sizing: border-box;
 `
 
 // input styling
