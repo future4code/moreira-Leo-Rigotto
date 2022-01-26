@@ -1,8 +1,15 @@
 import styled from 'styled-components';
 import react from 'react';
-import './App.css';
 import SignupSection from './components/SignupSection.js';
 import SearchSection from './components/SearchSection.js'
+
+const AppContainer = styled.div`
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+`
 
 const StyledButton = styled.button`
   background-color: lightblue;
@@ -50,9 +57,9 @@ export default class App extends react.Component {
     }
 
   return (
-    <div className="App">
+    <AppContainer>
       {mainScreen}
-    </div>
+    </AppContainer>
   );
   }
 }

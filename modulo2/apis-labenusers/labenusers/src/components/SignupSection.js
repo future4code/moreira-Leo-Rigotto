@@ -81,11 +81,11 @@ export default class SignupSection extends react.Component {
             })
         })
         .catch((err) => {
-            alert('Erro ao criar usuário. Tente novamente.')
-            this.setState({
-                email: "",
-                name: ""
-            })
+            if(err.response.data.message === "User information are missing. Name and email are required."){
+                alert('É obrigatório digitar nome e email para prosseguir')
+            } else if (err.response.data.message === "Invalid email") {
+                alert('Por favor digite um email válido.')
+            } else alert('Erro ao criar usuário. Tente novamente.')
         })
     }
 
