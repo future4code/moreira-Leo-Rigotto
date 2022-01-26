@@ -17,6 +17,14 @@ const ListContainer = styled.ul`
   width: 40vw;
 `
 
+const SearchContainer = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 10px;
+`
+
 const UserInput = styled.input`
     border: 2px solid lightgray;
     border-radius: 10px;
@@ -82,6 +90,23 @@ const EditButton = styled.button`
     }
 `
 
+const StyledButton = styled.button`
+  background-color: lightblue;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    padding: 5px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.5s ease;
+    :hover{
+        background-color: skyblue;
+    }
+    :active{
+        background-color: lightblue;
+    }
+`
+
 const headers = {
     headers: {
         Authorization: "leo-rigotto-moreira"
@@ -96,7 +121,9 @@ export default class SignupSection extends react.Component {
         detailedUser: "",
         editMailInput: "",
         editNameInput: "",
-        edit: "Editar"
+        edit: "Editar",
+        searchName: "",
+        searchEmail: "",
     }
 
     getAllUsers = () => {
@@ -143,7 +170,12 @@ export default class SignupSection extends react.Component {
     }
 
     onClickDetails = (e) => {
-        const url = `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${e.target.value}`
+        const id = e.target.value
+        this.editDetails(id)
+    }
+
+    editDetails = (id) => {
+        const url = `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${id}`
 
         axios
         .get(url, headers)
@@ -199,6 +231,27 @@ export default class SignupSection extends react.Component {
         })
     }
 
+    onChangeSearchName = (e) => {
+        const input = e.target.value
+        this.setState({
+            searchName: input
+        }) 
+    }
+
+    onChangeSearchEmail = (e) => {
+        const input = e.target.value
+        this.setState({
+            searchEmail: input
+        }) 
+    }
+
+    search = () => {
+        const url = `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/search?name=${this.state.searchName}&email=${this.state.searchEmail}`
+        axios.get(url, headers)
+        .then((res) => {this.editDetails(res.data[0].id)})
+        .catch(() => {alert("Tente novamente digitando o nome ou email exatos.")})
+    }
+
   render() {
 
     let userList = <ListContainer>
@@ -207,6 +260,13 @@ export default class SignupSection extends react.Component {
 
     if (this.state.userList !== "" && this.state.detailsScreen === false){
         userList = <ListContainer>
+
+            <SearchContainer>
+                <UserInput value={this.state.searchName} onChange={this.onChangeSearchName} placeholder='nome exato'/>
+                <UserInput value={this.state.searchEmail} onChange={this.onChangeSearchEmail} placeholder='email exato'/>
+                <StyledButton onClick={this.search}>Buscar</StyledButton>
+            </SearchContainer>
+
         {this.state.userList.map((user) => {
             return <ListItem key={user.id}>
                 
