@@ -1,19 +1,22 @@
 import react from "react"
 import styled from "styled-components"
-import { FlexContainer } from "../../constants/FlexContainer"
 
 const Title = styled.p`
     font-size: 1.5em;
     font-weight: bold;
     margin: 0;
+    color: lightgreen;
 `
 
 const HeaderContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 20px;
-    margin-left: 15px;
+    margin-bottom: 5px;
+    padding-left: 15px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid gray;
+    cursor: pointer;
     button{
         color: white;
         background: none;
@@ -42,7 +45,7 @@ const HeaderContainer = styled.div`
 export function PLaylistsHeader(props) {
     return(
         <HeaderContainer>
-            <Title>Playlists</Title>
+            <Title onClick={props.hideList}>{(props.hidden ? '-' : '+')} Playlists</Title>
             <button onClick={props.createPlaylist}>+</button>
         </HeaderContainer>
     )

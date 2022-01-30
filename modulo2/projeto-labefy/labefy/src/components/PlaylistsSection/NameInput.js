@@ -1,9 +1,8 @@
 import axios from 'axios';
 import React from 'react';
 import styled from 'styled-components';
-import { FlexContainer } from '../../constants/FlexContainer';
-// import { BASE_URL } from '../../constants/urls';
-// import { headers } from '../../constants/urls';
+import { BASE_URL } from '../../constants/urls';
+import { headers } from '../../constants/urls';
 
 const StyledInput = styled.input`
     border: 1px solid lightgray;
@@ -13,6 +12,15 @@ const StyledInput = styled.input`
     padding: 2px 4px;
     margin: 5px 0 0 5px;
     width: 70%;
+`
+
+const StyledForm = styled.form`
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
+    margin: 0;
+    padding: 1px;
 `
 
 const AddButton = styled.div`
@@ -43,22 +51,24 @@ export default class NameInput extends React.Component{
         this.setState({input: e.target.value})
     }
 
-    addPlaylist = () => {
-        const BASE_URL = 'https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/'
-        const headers = { Authorization: 'leo-rigotto-moreira' }
+    addPlaylist = (e) => {
+        e.preventDefault()
         const body = {name: this.state.input}
 
         axios.post(BASE_URL, body, headers)
-        .then((res) => alert(`Playlist ${this.state.input} criada com sucesso`))
-        .catch((err) => alert(err.response.data))
+        .then((res) => {
+            this.setState({input: ""})
+            this.props.update()
+        })
+        .catch((err) => alert(err.response.data.message))
     }
 
     render(){
         return(
-            <FlexContainer>
-                <StyledInput value={this.state.input} onChange={this.handleInput}/>
-                <AddButton onClick={this.addPlaylist}>Add</AddButton>
-            </FlexContainer>
+            <StyledForm type="submit" onSubmit={this.addPlaylist}>
+                <StyledInput autoFocus placeholder='Create playlist' value={this.state.input} onChange={this.handleInput}/>
+                <AddButton type="submit" onClick={this.addPlaylist}>Add</AddButton>
+            </StyledForm>
         )
     }
 }
