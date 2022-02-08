@@ -1,6 +1,7 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import styled from "styled-components"
 import axios from "axios"
+import { base_URL, headers } from "../services/urls"
 
 const ListContainer = styled.ul`
     display: flex;
@@ -24,6 +25,11 @@ const User = styled.li`
     width: 95%;
     margin: 10px 0;
     padding: 0;
+    transition: 300ms ease;
+    p{
+        font-size: 1.2em;
+        font-weight: bold;
+    }
     .photo{
         border-radius: 50px;
         margin: 5px 10px;
@@ -31,149 +37,42 @@ const User = styled.li`
         height: 60px;
         overflow: hidden;
         img{
-            width: 200%;
-            transform: translateX(-20%);
+            width: 110px;
+            transform: translateX(-25%);
         }
+    }
+    :hover{
+        background-color: lightsteelblue;
     }
 `
 
 export const MatchList = () => {
 
-    const [userList, setUserList] = useState([])
+    const [matches, setMatches] = useState([])
 
     const getMatches = () => {
-
+        axios.get(base_URL+'matches', headers)
+        .then((res) => setMatches(res.data.matches))
+        .catch((err) => console.log(err.response))
     }
+
+    useEffect(getMatches, [])
+
+    const matchList = matches.map((user) => {
+        return <User key={user.id}>
+            <div className="photo"> 
+                <img src={user.photo} alt="user"/>
+            </div>
+            <p>{user.name}</p>
+        </User>
+        })
+
+    const renderList = (matches.length !== 0 ? matchList : <img src="https://media1.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif" alt="carregando..."/>)
 
 
     return <ListContainer>
 
-        <User>
-
-            <div className="photo"> 
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/TechCrunch_Disrupt_San_Francisco_2018_-_day_3_%2830671211838%29.jpg/2560px-TechCrunch_Disrupt_San_Francisco_2018_-_day_3_%2830671211838%29.jpg" alt="user"/>
-            </div>
-
-            <p>Timnit</p>
-        </User>
-
-
-         <User>
-
-            <div className="photo"> 
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/TechCrunch_Disrupt_San_Francisco_2018_-_day_3_%2830671211838%29.jpg/2560px-TechCrunch_Disrupt_San_Francisco_2018_-_day_3_%2830671211838%29.jpg" alt="user"/>
-            </div>
-
-            <p>Timnit</p>
-        </User>
-        
-
-         <User>
-
-            <div className="photo"> 
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/TechCrunch_Disrupt_San_Francisco_2018_-_day_3_%2830671211838%29.jpg/2560px-TechCrunch_Disrupt_San_Francisco_2018_-_day_3_%2830671211838%29.jpg" alt="user"/>
-            </div>
-
-            <p>Timnit</p>
-        </User>
-
-        <User>
-
-            <div className="photo"> 
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/TechCrunch_Disrupt_San_Francisco_2018_-_day_3_%2830671211838%29.jpg/2560px-TechCrunch_Disrupt_San_Francisco_2018_-_day_3_%2830671211838%29.jpg" alt="user"/>
-            </div>
-
-            <p>Timnit</p>
-        </User>
-        <User>
-
-            <div className="photo"> 
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/TechCrunch_Disrupt_San_Francisco_2018_-_day_3_%2830671211838%29.jpg/2560px-TechCrunch_Disrupt_San_Francisco_2018_-_day_3_%2830671211838%29.jpg" alt="user"/>
-            </div>
-
-            <p>Timnit</p>
-        </User>
-        <User>
-
-            <div className="photo"> 
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/TechCrunch_Disrupt_San_Francisco_2018_-_day_3_%2830671211838%29.jpg/2560px-TechCrunch_Disrupt_San_Francisco_2018_-_day_3_%2830671211838%29.jpg" alt="user"/>
-            </div>
-
-            <p>Timnit</p>
-        </User>
-        <User>
-
-            <div className="photo"> 
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/TechCrunch_Disrupt_San_Francisco_2018_-_day_3_%2830671211838%29.jpg/2560px-TechCrunch_Disrupt_San_Francisco_2018_-_day_3_%2830671211838%29.jpg" alt="user"/>
-            </div>
-
-            <p>Timnit</p>
-        </User>
-        <User>
-
-            <div className="photo"> 
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/TechCrunch_Disrupt_San_Francisco_2018_-_day_3_%2830671211838%29.jpg/2560px-TechCrunch_Disrupt_San_Francisco_2018_-_day_3_%2830671211838%29.jpg" alt="user"/>
-            </div>
-
-            <p>Timnit</p>
-        </User>
-        <User>
-
-            <div className="photo"> 
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/TechCrunch_Disrupt_San_Francisco_2018_-_day_3_%2830671211838%29.jpg/2560px-TechCrunch_Disrupt_San_Francisco_2018_-_day_3_%2830671211838%29.jpg" alt="user"/>
-            </div>
-
-            <p>Timnit</p>
-        </User>
-        <User>
-
-            <div className="photo"> 
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/TechCrunch_Disrupt_San_Francisco_2018_-_day_3_%2830671211838%29.jpg/2560px-TechCrunch_Disrupt_San_Francisco_2018_-_day_3_%2830671211838%29.jpg" alt="user"/>
-            </div>
-
-            <p>Timnit</p>
-        </User>
-        <User>
-
-            <div className="photo"> 
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/TechCrunch_Disrupt_San_Francisco_2018_-_day_3_%2830671211838%29.jpg/2560px-TechCrunch_Disrupt_San_Francisco_2018_-_day_3_%2830671211838%29.jpg" alt="user"/>
-            </div>
-
-            <p>Timnit</p>
-        </User>
-        <User>
-
-            <div className="photo"> 
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/TechCrunch_Disrupt_San_Francisco_2018_-_day_3_%2830671211838%29.jpg/2560px-TechCrunch_Disrupt_San_Francisco_2018_-_day_3_%2830671211838%29.jpg" alt="user"/>
-            </div>
-
-            <p>Timnit</p>
-        </User>
-        <User>
-
-            <div className="photo"> 
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/TechCrunch_Disrupt_San_Francisco_2018_-_day_3_%2830671211838%29.jpg/2560px-TechCrunch_Disrupt_San_Francisco_2018_-_day_3_%2830671211838%29.jpg" alt="user"/>
-            </div>
-
-            <p>Timnit</p>
-        </User>
-        <User>
-
-            <div className="photo"> 
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/TechCrunch_Disrupt_San_Francisco_2018_-_day_3_%2830671211838%29.jpg/2560px-TechCrunch_Disrupt_San_Francisco_2018_-_day_3_%2830671211838%29.jpg" alt="user"/>
-            </div>
-
-            <p>Timnit</p>
-        </User>
-        <User>
-
-            <div className="photo"> 
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/TechCrunch_Disrupt_San_Francisco_2018_-_day_3_%2830671211838%29.jpg/2560px-TechCrunch_Disrupt_San_Francisco_2018_-_day_3_%2830671211838%29.jpg" alt="user"/>
-            </div>
-
-            <p>Timnit</p>
-        </User>
-
+        {renderList}
         
     </ListContainer>
 }

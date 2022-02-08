@@ -2,6 +2,8 @@ import styled from "styled-components"
 import { Logo } from "../assets/Logo"
 import { RiUserHeartLine, RiUserHeartFill } from "react-icons/ri"
 import { BiReset } from "react-icons/bi"
+import axios from "axios"
+import { base_URL, headers } from "../services/urls"
 
 const HeaderContainer = styled.div`
     display: flex;
@@ -25,8 +27,17 @@ const HeaderContainer = styled.div`
 
 
 export const Header = (props) => {
+
+    const clear = () => {
+        axios.put(base_URL+'clear', headers)
+        .then((res) => {props.getProfile()
+            alert('Lista de Matches resetada')
+            })
+        .catch((err) => console.log(err.response))
+    }
+
     return <HeaderContainer>
-        <BiReset className="icon"/>
+        <BiReset className="icon" onClick={clear}/>
         <Logo/>
         {props.matchScreen ? <RiUserHeartFill className="icon" onClick={props.changeScreen}/> : <RiUserHeartLine className="icon" onClick={props.changeScreen}/> }
     </HeaderContainer>

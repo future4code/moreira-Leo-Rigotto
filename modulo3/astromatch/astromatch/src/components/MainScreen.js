@@ -37,30 +37,58 @@ export const MainScreen = () => {
         .catch((err) => {console.log(err.response)})
     }
 
-    useEffect(() => {
-        getProfile()
-    }, [])
+    useEffect(() => getProfile(), [])
 
     const changeScreen = () => {
         setMatchScreen(v => !v)
     }
 
     const like = () => {
-        // alert('curtiu')
+        const data = JSON.stringify({
+        "id": profile.id,
+        "choice": true
+        })
+
+        const config = {
+        method: 'post',
+        url: 'https://us-central1-missao-newton.cloudfunctions.net/astroMatch/rigotto/choose-person',
+        headers: { 
+            'Content-Type': 'application/json'
+        },
+        data : data
+        }
+
+        axios(config)
+        .then(() => getProfile())
+        .catch(function (err) {
+        console.log(err);
+        })
     }
 
     const dislike = () => {
-        // alert('não curtiu')
+        const data = JSON.stringify({
+            "id": profile.id,
+            "choice": false
+            })
+    
+            const config = {
+            method: 'post',
+            url: 'https://us-central1-missao-newton.cloudfunctions.net/astroMatch/rigotto/choose-person',
+            headers: { 
+                'Content-Type': 'application/json'
+            },
+            data : data
+            }
+    
+            axios(config)
+            .then(() => getProfile())
+            .catch(function (err) {
+            console.log(err);
+            })
     }
 
-    let cards // renders the cards
-
-    let screen  // renders the main screen
-
-    if (matchScreen) screen = <MatchList/>
-    else screen = <>
-
-        <UserCard 
+    const renderCard = () => {
+        return <UserCard 
             key={profile.id}
             like={like} 
             photo={profile.photo} 
@@ -68,6 +96,16 @@ export const MainScreen = () => {
             age={profile.age} 
             bio={profile.bio}
         />
+    }
+
+    let card = (profile.length !== 0 ? renderCard() : <img src="https://media1.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif" alt="carregando..."/>)
+
+    let screen  // renders the main screen
+
+    if (matchScreen) screen = <MatchList/>
+    else screen = <>
+
+        {card}
 
         <ButtonsContainer>
 
@@ -80,7 +118,7 @@ export const MainScreen = () => {
 
 
     return <ScreenContainer>
-        <Header matchScreen={matchScreen} changeScreen={changeScreen}/>
+        <Header matchScreen={matchScreen} changeScreen={changeScreen} getProfile={getProfile}/>
 
         {screen}
 
