@@ -13,12 +13,17 @@ const ScreenContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  width: 30vw;
-  height: 80vh;
+  width: 400px;
+  height: 700px;
   border: 1px solid lightgray;
   box-shadow: 0 4px 8px lightgray;
   border-radius: 15px;
   box-sizing: border-box;
+  @media screen and (max-width: 800px) {
+      width: 100vw;
+      height: 100vh;
+      border-radius: 0;
+  }
 `
 
 const ButtonsContainer = styled.div`
