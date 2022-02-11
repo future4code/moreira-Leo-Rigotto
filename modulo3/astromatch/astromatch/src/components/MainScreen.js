@@ -7,6 +7,8 @@ import { UserCard } from "./UserCard";
 import { MatchList } from "./MatchList";
 import axios from "axios";
 import { base_URL, headers } from "../services/urls";
+// import reactSpring from "react-spring";
+import { NoUsersWarning } from "./NoUsersWarning";
 
 const ScreenContainer = styled.div`
   display: flex;
@@ -14,7 +16,7 @@ const ScreenContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 400px;
-  height: 700px;
+  height: 80%;
   border: 1px solid lightgray;
   box-shadow: 0 4px 8px lightgray;
   border-radius: 15px;
@@ -35,12 +37,25 @@ export const MainScreen = () => {
 
     const [matchScreen, setMatchScreen] = useState(false)
     const [profile, setProfile] = useState([])
+    const [matches, setMatches] = useState([])
+    const [gotMatches,  setGotMatches] = useState(false)
+
+    const getMatches = () => {
+        axios.get(base_URL+'matches', headers)
+        .then((res) => {
+            setMatches(res.data.matches)
+            setGotMatches(true)
+        })
+        .catch((err) => console.log(err.response))
+    }
 
     const getProfile = () => {
         axios.get(base_URL+"person", headers)
         .then((res) => {setProfile(res.data.profile)})
         .catch((err) => {console.log(err.response)})
     }
+
+    useEffect(getMatches, [profile])
 
     useEffect(() => getProfile(), [])
 
@@ -93,21 +108,24 @@ export const MainScreen = () => {
     }
 
     const renderCard = () => {
-        return <UserCard 
+        if (profile.length !== 0) {
+            return <UserCard 
             key={profile.id}
             like={like} 
             photo={profile.photo} 
             name={profile.name} 
             age={profile.age} 
             bio={profile.bio}
-        />
+            />
+        }else return <img style={{width: '450px'}} src="https://flevix.com/wp-content/uploads/2019/07/Line-Preloader.gif" alt="carregando..."/>
+               
     }
 
-    let card = (profile.length !== 0 ? renderCard() : <img src="https://media1.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif" alt="carregando..."/>)
+    let card = (profile !== null ? renderCard() : <NoUsersWarning/>)
 
     let screen  // renders the main screen
 
-    if (matchScreen) screen = <MatchList/>
+    if (matchScreen) screen = <MatchList matches={matches} gotMatches={gotMatches}/>
     else screen = <>
 
         {card}
@@ -123,7 +141,7 @@ export const MainScreen = () => {
 
 
     return <ScreenContainer>
-        <Header matchScreen={matchScreen} changeScreen={changeScreen} getProfile={getProfile}/>
+        <Header matchScreen={matchScreen} changeScreen={changeScreen} getProfile={getProfile} count={matches.length}/>
 
         {screen}
 

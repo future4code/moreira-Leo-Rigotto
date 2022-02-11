@@ -12,14 +12,30 @@ const HeaderContainer = styled.div`
     border-bottom: 1px solid lightgray;
     height: 40px;
     width: 100%;
+    color: #753192;
     .icon{
         margin: 0 15px;
         font-size: 1.5em;
-        color: #753192;
         cursor: pointer;
         transition: 300ms ease;
         :hover{
             transform: scale(1.1);
+        }
+    }
+    .count{
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        p{
+            color: white;
+            margin-right: -15px;
+            font-weight: bold;
+            background-color: #EE3C49;
+            text-align: center;
+            border-radius: 20px;
+            padding: 0 6px;
         }
     }
 `
@@ -36,9 +52,11 @@ export const Header = (props) => {
         .catch((err) => console.log(err.response))
     }
 
+    const matchCount = props.count ? <p>{props.count}</p> : <></>
+
     return <HeaderContainer>
         <BiReset className="icon" onClick={clear}/>
         <Logo/>
-        {props.matchScreen ? <RiUserHeartFill className="icon" onClick={props.changeScreen}/> : <RiUserHeartLine className="icon" onClick={props.changeScreen}/> }
+        {props.matchScreen ? <RiUserHeartLine className="icon" onClick={props.changeScreen}/> : <div className="count" onClick={props.changeScreen}>{matchCount}<RiUserHeartFill className="icon"/></div> }
     </HeaderContainer>
 }

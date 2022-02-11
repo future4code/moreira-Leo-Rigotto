@@ -1,7 +1,4 @@
-import { useEffect, useState } from "react"
 import styled from "styled-components"
-import axios from "axios"
-import { base_URL, headers } from "../services/urls"
 
 const ListContainer = styled.ul`
     display: flex;
@@ -46,28 +43,46 @@ const User = styled.li`
     }
 `
 
-export const MatchList = () => {
-
-    const [matches, setMatches] = useState([])
-
-    const getMatches = () => {
-        axios.get(base_URL+'matches', headers)
-        .then((res) => setMatches(res.data.matches))
-        .catch((err) => console.log(err.response))
+const LikeWarning = styled.div`
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    p{
+        margin: 3px;
+        cursor: default;
+        font-size: 1em;
+        font-weight: 500;
     }
+`
 
-    useEffect(getMatches, [])
+export const MatchList = (props) => {
+
+    const matches = props.matches
+    const gotMatches = props.gotMatches
 
     const matchList = matches.map((user) => {
-        return <User key={user.id}>
-            <div className="photo"> 
-                <img src={user.photo} alt="user"/>
-            </div>
-            <p>{user.name}</p>
-        </User>
+            return <User key={user.id}>
+                <div className="photo"> 
+                    <img src={user.photo} alt="user"/>
+                </div>
+                <p>{user.name}</p>
+            </User>
         })
 
-    const renderList = (matches.length !== 0 ? matchList : <img src="https://media1.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif" alt="carregando..."/>)
+    let renderList
+     if (matches.length === 0 && gotMatches === true) {
+        renderList = <LikeWarning>
+            <img style={{width: '150px'}} src="https://cliply.co/wp-content/uploads/2021/09/142109670_SAD_CAT_400.gif" alt="gato triste"/>
+            <p>Ainda sem matches :(</p>
+            <p>Curta alguns perfis para começar</p>
+            </LikeWarning>
+     } else {
+        renderList = (matches.length !== 0 ? matchList : <img style={{width: '350px'}} src="https://flevix.com/wp-content/uploads/2019/07/Line-Preloader.gif" alt="carregando..."/>)
+     }
 
 
     return <ListContainer>
