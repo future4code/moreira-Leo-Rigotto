@@ -13,7 +13,7 @@ const CardContainer = styled.div`
     justify-content: space-between;
     overflow: hidden;
     background-image: url(${props => props.photo});
-    background-position: center;
+    background-position-x: center;
     background-repeat: no-repeat;
     background-size: cover;
 `

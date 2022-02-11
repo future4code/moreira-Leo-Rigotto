@@ -22,8 +22,9 @@ const ScreenContainer = styled.div`
   border-radius: 15px;
   box-sizing: border-box;
   @media screen and (max-width: 800px) {
-      width: 100vw;
-      height: 100vh;
+      width: 100%;
+      height: 100%;
+      padding-bottom: 80px;
       border-radius: 0;
   }
 `
