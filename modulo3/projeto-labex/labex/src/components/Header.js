@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 import {Logo} from "../assets/Logo"
 
@@ -5,13 +6,15 @@ const Container = styled.div`
     display: flex;
     justify-content: space-between;
     padding: 5px 15px;
-    width: 100%;
     background-color: #3866FF;
     color: white;
 `
 
 export const Header = () => {
+
+  const goTo = useNavigate()
+
   return <Container>
-      <Logo/>
+      <Logo onClick={() => goTo('/')} style={{cursor: "pointer"}}/>
   </Container>
 }

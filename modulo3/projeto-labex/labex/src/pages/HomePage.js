@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 import { ButtonClassic } from "../components/ButtonClassic"
 
@@ -19,6 +20,9 @@ const FirstSection = styled.div`
 `
 
 export const HomePage = () => {
+
+    const goTo = useNavigate()
+
     return <PageContainer>
 
         <FirstSection>
@@ -27,7 +31,7 @@ export const HomePage = () => {
             <h1>Voe Longe</h1>
             <h2>Viagens espaciais para quem tem a cabeça na lua</h2>
 
-            <ButtonClassic/>
+            <ButtonClassic text={"Viagens Disponíveis"} onClick={() => goTo('/trips')}/>
         
         </FirstSection>
 

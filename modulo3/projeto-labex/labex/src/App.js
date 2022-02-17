@@ -1,14 +1,12 @@
 import './App.css';
-import { Header } from './components/Header';
-import { HomePage } from './pages/HomePage.js';
-import {TripList} from './pages/TripList';
+import { Router } from './services/Router';
 
 function App() {
   return (
     <div className="App">
-      <Header/>
-      <HomePage/>
-      <TripList/>
+
+      <Router/>
+      
     </div>
   );
 }
