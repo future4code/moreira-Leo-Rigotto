@@ -55,6 +55,7 @@ export const Login = () => {
         .catch((err) => {
             alert(err.response.data.message)
             clearForm()
+            setButtonText('Login')
         })
     }
 
