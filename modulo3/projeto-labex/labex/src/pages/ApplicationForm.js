@@ -12,8 +12,8 @@ const PageContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 85vh;
     padding: 0 20px;
+    height: 85vh;
 `
 
 const DetailCard = styled.div`
@@ -40,12 +40,8 @@ const FormContainer = styled.form`
         font-size: 1em;
         margin: 3px;
     }
-    .msg{
-        font-size: 1em;
-        height: 100px;
-    }
     select{
-        font-size: 2em;
+        font-size: 1em;
     }
 `
 
@@ -132,7 +128,7 @@ export const ApplicationForm = () => {
                 title="Digite sua idade apenas em números"
                 required
             />
-            <textarea name="applicationText" 
+            <input name="applicationText" 
                 className="msg"
                 placeholder="Mensagem de Candidatura" 
                 type='text'
