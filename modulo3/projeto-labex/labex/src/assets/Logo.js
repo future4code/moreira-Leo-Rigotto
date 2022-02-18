@@ -4,7 +4,6 @@ import { GiRocketFlight } from "react-icons/gi"
 const LogoContainer = styled.div`
     cursor: default;
     display: flex;
-    color: white;
     align-items: baseline;
     .labe{
         font-size: 1.35em;

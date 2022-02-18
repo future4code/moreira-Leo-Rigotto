@@ -1,19 +1,62 @@
 import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
+import { IoIosRocket } from "react-icons/io"
 
 const CardContainer = styled.div`
+    margin: 15px;
     display: flex;
     flex-direction: column;
     border: 1px solid lightgray;
     border-radius: 15px;
-    height: fit-content;
     width: 90%;
     overflow: hidden;
+    box-shadow: 0 4px 6px lightgray;
+    .title{
+        font-size: 1.5em;
+        font-weight: 700;
+        margin: 10px 10px 3px 10px;
+    }
+    .description{
+        margin: 0 8px;
+        font-weight: 600;
+        color: gray;
+    }
+    .planet{
+        margin: 8px 20px;
+        font-weight: 600;
+        color: gray;
+    }
+    .duration{
+        font-size: 1.1em;
+        margin: 8px;
+        font-weight: 600;
+    }
+    .date{
+        margin: 0 20px;
+        font-weight: 600;
+        color: gray;
+    }
+    button{
+        cursor: pointer;
+        width: fit-content;
+        font-size: large;
+        align-self: center;
+        background-color: lightsteelblue;
+        border: none;
+        border-radius: 15px;
+        padding: 10px;
+        margin: 10px;
+        transition: 300ms ease;
+    :hover{
+        background-color: steelblue;
+        color: white
+    }
+    }
 `
 
 const PlanetPhoto = styled.div`
     width: 100%;
-    height: 350px;
+    height: 250px;
     background-image: url(${(props) => props.image});
     background-position: center;
     background-repeat: no-repeat;
@@ -25,8 +68,6 @@ export const TripCard = (props) => {
 
     const goTo = useNavigate()
 
-    let cardId = props.id
-
     const planet = props.planet
     let planetImage
 
@@ -34,7 +75,7 @@ export const TripCard = (props) => {
         case "Marte":
             planetImage = "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/OSIRIS_Mars_true_color.jpg/640px-OSIRIS_Mars_true_color.jpg"
             break
-        case "Júpiter":
+        case "Jupiter":
             planetImage = "https://upload.wikimedia.org/wikipedia/commons/2/2b/Jupiter_and_its_shrunken_Great_Red_Spot.jpg"
             break
         case "Mercúrio":
@@ -67,8 +108,8 @@ export const TripCard = (props) => {
         <p className="title">{props.title}</p>
         <p className="description">{props.description}</p>
         <p className="planet">Planeta: {props.planet}</p>
-        <p className="duration">Duração: {props.duration}</p>
-        <p className="date">Data: {props.date}</p>
-        <button onClick={() => goTo(`/viewtrip/${cardId}`)}></button>
+        <p className="date">Data de início: {props.date}</p>
+        <p className="duration">Duração: {props.duration} dias</p>
+        <button onClick={() => goTo(`/applicationform/${props.id}`)}><IoIosRocket/> Inscreva-se</button>
     </CardContainer>
 }

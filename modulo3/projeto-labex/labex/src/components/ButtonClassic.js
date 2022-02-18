@@ -2,12 +2,19 @@ import styled from "styled-components"
 
 
 const ButtonContainer = styled.button`
-    background-color: lightblue;
+    cursor: pointer;
+    background-color: lightsteelblue;
+    margin: 10px;
     border: none;
-    padding: 5px;
+    padding: 10px;
     border-radius: 5px;
-    font-size: 1em;
-    font-weight: 500;
+    font-size: 1.2em;
+    font-weight: 600;
+    transition: 300ms ease;
+    :hover{
+        background-color: steelblue;
+        color: white
+    }
 `
 
 export const ButtonClassic = (props) => {

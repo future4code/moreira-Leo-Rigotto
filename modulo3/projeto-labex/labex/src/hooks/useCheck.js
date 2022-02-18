@@ -8,7 +8,6 @@ export const useCheck = () => {
     useEffect(() => {
         const token = localStorage.getItem('token')
         if (token === null) {
-            alert('Você precisa fazer login para acessar essa página')
             goTo('/login')
         } else setChecked(true)
     }, [goTo])

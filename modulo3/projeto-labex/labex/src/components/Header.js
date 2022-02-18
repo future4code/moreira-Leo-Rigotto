@@ -15,6 +15,7 @@ export const Header = () => {
   const goTo = useNavigate()
 
   return <Container>
-      <Logo onClick={() => goTo('/')} style={{cursor: "pointer"}}/>
+    <div style={{cursor: "pointer"}}><Logo onClick={() => goTo('/')}/></div>
+
   </Container>
 }
