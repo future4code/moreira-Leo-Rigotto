@@ -4,11 +4,11 @@ import axios from "axios"
 import { BASE_URL } from "../services/urls"
 
 const CardContainer = styled.div`
+    background-color: lightgray;
     display: flex;
     flex-direction: column;
     border: 1px solid lightgrey;
     border-radius: 15px;
-    width: 90vw;
     margin: 10px 0; 
     padding: 0 10px;
     .user{

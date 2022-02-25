@@ -7,6 +7,7 @@ import { Loading } from "../assets/Loading"
 import styled from "styled-components"
 import { CreatePost } from "../components/CreatePost"
 import { useNavigate } from "react-router-dom"
+import { ClassicButton } from "../components/ClassicButton"
 
 const FeedContainer = styled.div`
     display: flex;
@@ -17,27 +18,33 @@ const FeedContainer = styled.div`
 export const Feed = () => {
 
     const [posts, setPosts] = useState()
+    const [showCreate, setShowCreate] = useState(false)
     const navigate = useNavigate()
     
     const token = localStorage.getItem("tokenLabeddit")
 
     useEffect(() => {
+        const getPosts = () => {
+            axios.get(BASE_URL+'/posts', {headers: {Authorization: token}})
+            .then((res) => setPosts(res.data))
+            .catch((err) => {
+                alert(err.response.data)
+                localStorage.removeItem("tokenLabeddit")
+                navigate('/login')
+        })}
         (token ? getPosts() : navigate('/login'))
     }, [posts, navigate, token])
 
-    const getPosts = () => {
-        axios.get(BASE_URL+'/posts', {headers: {Authorization: token}})
-        .then((res) => {
-            setPosts(res.data)
-        })
-        .catch((err) => {
-            alert(err.response.data)
-            localStorage.removeItem("tokenLabeddit")
-            navigate('/login')
-        })
+
+    const createPost = () => {
+        setShowCreate(!showCreate)
     }
 
     const postFeed = (posts ? posts.map((post) => {
+
+        const date = new Date(post.createdAt)
+        const fomatedDate = date.toLocaleString('pt-BR', {timeZone: 'UTC'})
+
         return <PostCard key={post.id}
         id={post.id}
         username={post.username}
@@ -46,15 +53,18 @@ export const Feed = () => {
         title={post.title}
         body={post.body}
         voteSum={post.voteSum}
-        userVote={post.userVote}/>
+        userVote={post.userVote}
+        />
     }) : <Loading/>)
 
-    let renderFeed = (posts ? postFeed : <Loading/>)
+    let renderFeed = (posts ? postFeed : <Loading showText={'carregando feed...'}/>)
 
     return <FeedContainer>
         <Header/>
 
-        <CreatePost/>
+        <ClassicButton text={'Criar post'} onClick={createPost}/>
+
+        {showCreate ? <CreatePost clear={createPost}/> : <></>}
         
         {renderFeed}
         

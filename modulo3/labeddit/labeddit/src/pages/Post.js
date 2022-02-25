@@ -44,7 +44,7 @@ export const Post = (props) => {
         body={comment.body}
         voteSum={comment.voteSum}
         userVote={comment.userVote}
-        />}) : <Loading/>
+        />}) : <Loading showText={'carregando comentários...'}/>
     )
 
     return <div>

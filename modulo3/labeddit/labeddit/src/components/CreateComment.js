@@ -3,7 +3,6 @@ import { BASE_URL } from "../services/urls"
 import { useForm } from "../hooks/useForm"
 import { ClassicButton } from "./ClassicButton"
 
-
 export const CreateComment = (props) => {
 
     const {form, handleChange, clearForm} = useForm({body: ""})

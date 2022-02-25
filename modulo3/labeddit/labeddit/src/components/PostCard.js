@@ -7,6 +7,16 @@ import { BASE_URL } from "../services/urls"
 import { useState } from "react"
 import {Post} from "../pages/Post"
 
+const AnimateDiv = styled.div`
+    transition: 300ms ease;
+    animation: appear 300ms ease;
+    overflow: hidden;
+    @keyframes appear {
+        from {height: 0px}
+        to {height: 100px}
+    }
+`
+
 
 const CardContainer = styled.div`
     display: flex;
@@ -15,7 +25,9 @@ const CardContainer = styled.div`
     border-radius: 15px;
     width: 90vw;
     margin: 10px 0; 
-    padding: 0 10px;
+    overflow: hidden;
+    transition: 500ms ease;
+
     .user{
         align-self: center;
         margin: 10px 0;
@@ -23,6 +35,22 @@ const CardContainer = styled.div`
     .votes{
         display: flex;
         align-items: center;
+        justify-content: space-between;
+    }
+    .footer{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-top: 1px solid lightgray;
+        margin-top: 15px;
+        background-color: whitesmoke;
+        padding: 0 10px;
+        font-size: 1em;
+        font-weight: 600;
+        button{
+            font-size: 1em;
+            font-weight: 600;
+        }
     }
 `
 
@@ -30,15 +58,10 @@ const StyledIcon = styled.div`
     cursor: pointer;
     margin: 5px;
     transition: 300ms ease;
-    border-radius: 20px;
-    :hover{
-        background-color: gray;
-        border-radius: 20px;
-        color: white;
-    }
+    border-radius: 50px;
     :active{
-        background-color: black;
         color: white;
+        background-color: black;
     }
 `
 
@@ -48,6 +71,7 @@ export const PostCard = (props) => {
 
     const clickDetails = () => {
         setCommenting(!commenting)
+        calculateTime()
     }
 
     const buttonText = <div style={{display: 'flex', alignItems: 'center',}}>
@@ -70,24 +94,45 @@ export const PostCard = (props) => {
     }
 
 
+    let today = new Date()
+
+    const calculateTime = () => {
+        const postTime = new Date(props.createdAt)
+        const timeInMinutes = (parseInt(((today - postTime) / 1000) / 60))
+        if (timeInMinutes < 60){
+            return `${timeInMinutes} minutos`
+        } else if (timeInMinutes >= 60 && timeInMinutes < 120){
+            return `1 hora`
+        } else if (timeInMinutes >= 120 && timeInMinutes < 2280){
+            return `${parseInt(timeInMinutes / 60)} horas`
+        } else return `${parseInt((timeInMinutes / 60) / 24)} dias`
+    }
+
 
     return <CardContainer>
         <p className="user">User: {props.username}</p>
-        <p className="date">Created at: {props.createdAt}</p>
+        <p className="date">{calculateTime()} atrás.</p>
         <p className="title">Title: {props.title}</p>
         <p className="body">Body: {props.body}</p>
-        <div className="votes"> 
-            <StyledIcon onClick={() => vote(1)}>
-                {props.userVote === 1 ? <BsArrowUpCircleFill/> : <BsArrowUpCircle/>}
-            </StyledIcon>     
-            <p>
-                {props.voteSum ? props.voteSum : 0}
-            </p>
-            <StyledIcon onClick={() => vote(-1)}>
-                {props.userVote === -1 ? <BsArrowDownCircleFill/> : <BsArrowDownCircle/>}
-            </StyledIcon> 
+        <div className="footer"> 
+
+            <div className="votes">
+                <StyledIcon onClick={() => vote(1)}>
+                    {props.userVote === 1 ? <BsArrowUpCircleFill/> : <BsArrowUpCircle/>}
+                </StyledIcon>     
+                <p>
+                    {props.voteSum ? props.voteSum : 0}
+                </p>
+                <StyledIcon onClick={() => vote(-1)}>
+                    {props.userVote === -1 ? <BsArrowDownCircleFill/> : <BsArrowDownCircle/>}
+                </StyledIcon> 
+            </div>
+
+            <ClassicButton id={props.id} text={buttonText} onClick={clickDetails}/>
+
         </div>
-        <ClassicButton id={props.id} text={buttonText} onClick={clickDetails}/>
-        {commenting ? <Post postId={props.id}/> : <></>}
+
+        {commenting ? <AnimateDiv> <Post postId={props.id}/> </AnimateDiv> : <></>}
+       
     </CardContainer>
 }
