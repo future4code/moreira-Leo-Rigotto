@@ -98,7 +98,8 @@ export const CommentCard = (props) => {
       return `há 1 hora`
     } else if (timeInMinutes >= 120 && timeInMinutes < 2280) {
       return `há ${parseInt(timeInMinutes / 60)} horas`
-    } else return `há ${parseInt(timeInMinutes / 60 / 24)} dias`
+    } else if (timeInMinutes >= 1440 && timeInMinutes < 2880) return `há 1 dia`
+    else return `há ${parseInt(timeInMinutes / 60 / 24)} dias`
   }
 
   return (

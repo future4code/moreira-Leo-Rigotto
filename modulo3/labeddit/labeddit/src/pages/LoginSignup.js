@@ -14,14 +14,27 @@ const PageContainer = styled.div`
   flex-direction: column;
   align-items: center;
   img {
-    width: 50%;
+    width: 60%;
     border-radius: 15px;
     margin-bottom: 20px;
   }
   h1 {
-    margin: 20px;
+    margin: 20px 0px;
     display: flex;
     align-items: center;
+  }
+  .welcome{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  @media screen and (min-width: 900px) {
+    margin: 10% 10%;
+    flex-direction: row;
+    justify-content: space-between;
+    img{
+      width: 70%;
+    }
   }
 `
 
@@ -29,6 +42,7 @@ const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 400px;
   input {
     margin: 5px;
     font-size: 1em;
@@ -37,6 +51,7 @@ const FormContainer = styled.div`
     padding: 3px;
   }
   p {
+    text-align: center;
     button {
       cursor: pointer;
       background-color: #f0dbb0;
@@ -230,13 +245,16 @@ export const LoginSignup = () => {
 
   return (
     <PageContainer>
-      <h1>
-        Boas-vindas ao <Logo />
-      </h1>
-      <img
-        src="https://img.freepik.com/free-vector/group-people-illustration-set_52683-33806.jpg?size=626&ext=jpg"
-        alt="ilustração com pessoas diversas sorrindo"
-      />
+      <div className="welcome">
+        <h1>
+          Boas-vindas ao <Logo />
+        </h1>
+        <img
+          src="https://img.freepik.com/free-vector/group-people-illustration-set_52683-33806.jpg?size=626&ext=jpg"
+          alt="ilustração com pessoas diversas sorrindo"
+        />
+      </div>
+
       {isLoggedIn.checked ? navigate("/feed") : renderPage}
     </PageContainer>
   )

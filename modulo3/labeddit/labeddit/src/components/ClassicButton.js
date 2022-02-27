@@ -12,7 +12,7 @@ const StyledButton = styled.button`
   color: white;
   font-weight: 600;
   :hover {
-    opacity: 85%;
+    opacity: 80%;
   }
   :active {
     background-color: ${(props) => props.bgColor};

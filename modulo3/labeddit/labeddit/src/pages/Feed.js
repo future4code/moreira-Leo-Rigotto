@@ -13,6 +13,18 @@ const FeedContainer = styled.div`
   flex-direction: column;
   align-items: center;
   max-width: 700px;
+  padding-bottom: 30px;
+`
+
+const Ad = styled.div`
+  border: 1px solid lightgray;
+  height: 700px;
+  width: 400px;
+  margin-top: 50px;
+  background-image: url('https://i.pinimg.com/474x/7b/46/5e/7b465e676c391b80813b3fc391201bdb.jpg');
+  @media screen and (max-width: 900px) {
+    display: none;
+  }
 `
 
 export const Feed = () => {
@@ -20,6 +32,7 @@ export const Feed = () => {
   const [showCreate, setShowCreate] = useState(false)
   const navigate = useNavigate()
   const [size, setSize] = useState(10)
+  const [buttonText, setButtonText] = useState("Carregar mais posts")
 
   const token = localStorage.getItem("tokenLabeddit")
 
@@ -29,7 +42,9 @@ export const Feed = () => {
         .get(BASE_URL + `/posts?size=${size}`, {
           headers: { Authorization: token },
         })
-        .then((res) => setPosts(res.data))
+        .then((res) => {
+          setPosts(res.data)
+        })
         .catch((err) => {
           alert(err.response.data)
           localStorage.removeItem("tokenLabeddit")
@@ -63,28 +78,46 @@ export const Feed = () => {
     <Loading />
   )
 
+  const morePosts = () => {
+    setSize(size + 10)
+    setButtonText(<Loading showText={"carregando feed..."} />)
+    setTimeout(() => {
+      setButtonText("Carregar mais posts")
+      clearTimeout()
+    }, 2000)
+  }
+
   let renderFeed = posts ? (
-    <div>
+    <div
+      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+    >
       {postFeed}
-      <button onClick={() => setSize(size + 10)}>teste</button>
+      <ClassicButton
+        bgColor={"#88a2bc"}
+        text={buttonText}
+        onClick={morePosts}
+      />
     </div>
   ) : (
     <Loading showText={"carregando feed..."} />
   )
 
   return (
-    <FeedContainer>
-      {showCreate ? (
-        <CreatePost clear={createPost} />
-      ) : (
-        <ClassicButton
-          style={{ width: "100%" }}
-          text={"Novo post"}
-          onClick={createPost}
-        />
-      )}
+    <div style={{display: 'flex', justifyContent: 'center'}}>
+      <FeedContainer>
+        {showCreate ? (
+          <CreatePost clear={createPost} />
+        ) : (
+          <ClassicButton
+            style={{ width: "100%" }}
+            text={"Novo post"}
+            onClick={createPost}
+          />
+        )}
 
-      {renderFeed}
-    </FeedContainer>
+        {renderFeed}
+      </FeedContainer>
+      {posts ? <Ad/> : <></>}
+    </div>
   )
 }

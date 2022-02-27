@@ -32,8 +32,8 @@ const CardContainer = styled.div`
   flex-direction: column;
   border: 1px solid lightgrey;
   border-radius: 7px;
-  width: 90%;
-  margin: 5px 0;
+  width: 95%;
+  margin: 10px 5px;
   overflow: hidden;
   transition: 500ms ease;
   background-color: white;
@@ -143,9 +143,10 @@ export const PostCard = (props) => {
       return `há ${timeInMinutes} minutos`
     } else if (timeInMinutes >= 60 && timeInMinutes < 120) {
       return `há 1 hora`
-    } else if (timeInMinutes >= 120 && timeInMinutes < 2280) {
+    } else if (timeInMinutes >= 120 && timeInMinutes < 1440) {
       return `há ${parseInt(timeInMinutes / 60)} horas`
-    } else return `há ${parseInt(timeInMinutes / 60 / 24)} dias`
+    } else if (timeInMinutes >= 1440 && timeInMinutes < 2880) return `há 1 dia`
+    else return `há ${parseInt(timeInMinutes / 60 / 24)} dias`
   }
 
   return (
