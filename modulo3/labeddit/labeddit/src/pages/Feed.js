@@ -1,6 +1,5 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { Header } from "../components/Header"
 import { PostCard } from "../components/PostCard"
 import { BASE_URL } from "../services/urls"
 import { Loading } from "../assets/Loading"
@@ -13,6 +12,7 @@ const FeedContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-width: 700px;
 `
 
 export const Feed = () => {
@@ -60,7 +60,6 @@ export const Feed = () => {
     let renderFeed = (posts ? postFeed : <Loading showText={'carregando feed...'}/>)
 
     return <FeedContainer>
-        <Header/>
 
         <ClassicButton text={'Criar post'} onClick={createPost}/>
 

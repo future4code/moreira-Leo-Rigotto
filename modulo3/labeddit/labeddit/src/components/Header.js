@@ -6,11 +6,13 @@ import { ClassicButton } from "./ClassicButton";
 
 const HeaderContainer = styled.div`
     display: flex;
+    margin-bottom: 15px;
+    box-shadow: 0 0px 10px gray;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    background-color: orangered;
-    color: white;
+    background-color: white;
+    color: #4f6a8f;
     button{
         margin: 5px 10px;
     }
@@ -21,10 +23,11 @@ export const Header = () => {
 
     const navigate = useNavigate()
 
-    const isLoggedIn = useCheck()
+    const token = localStorage.getItem("tokenLabeddit")
 
-    let headerButton = (isLoggedIn.checked ? <ClassicButton 
-        text={"Logout"} 
+    let headerButton = (token ? <ClassicButton 
+        text={"Logout"}
+        bgColor={'#88a2bc'}
         onClick={() => {
             localStorage.removeItem('tokenLabeddit')
             navigate('/login')

@@ -9,7 +9,7 @@ const LoadContainer = styled.div`
     flex-direction: column;
     align-items: center;
     .icon{
-        font-size: 2em;
+        font-size: ${props => props.size};
         animation: rotation 2s ease 0s infinite;
         margin: 5px;
         @keyframes rotation {
@@ -25,7 +25,7 @@ const LoadContainer = styled.div`
 
 export const Loading = (props) => {
 
-    return <LoadContainer>
+    return <LoadContainer size={props.size ? props.size : '2em'}>
         <AiOutlineLoading className="icon"/>
         {props.showText ? <p>{props.showText}</p> : <></>}
     </LoadContainer>

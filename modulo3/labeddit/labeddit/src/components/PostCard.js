@@ -6,14 +6,17 @@ import axios from "axios"
 import { BASE_URL } from "../services/urls"
 import { useState } from "react"
 import {Post} from "../pages/Post"
+import {FaUserAstronaut} from "react-icons/fa"
 
 const AnimateDiv = styled.div`
     transition: 300ms ease;
     animation: appear 300ms ease;
     overflow: hidden;
     @keyframes appear {
-        from {height: 0px}
-        to {height: 100px}
+        0% {height: 0px}
+        100% {
+            ${(props) => (props.commentCount ? 'height: 130px' : 'height: 63px')}
+        }
     }
 `
 
@@ -23,14 +26,24 @@ const CardContainer = styled.div`
     flex-direction: column;
     border: 1px solid lightgrey;
     border-radius: 15px;
-    width: 90vw;
-    margin: 10px 0; 
+    width: 90%;
+    margin: 5px 0; 
     overflow: hidden;
     transition: 500ms ease;
-
-    .user{
-        align-self: center;
-        margin: 10px 0;
+    background-color: white;
+    .header{
+        padding-top: 3px;
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        font-size: 0.8em;
+        font-weight: 600;
+        color: gray;
+        border-bottom: 1px solid lightgray;
+        .title{
+            color: black;
+            margin: 0 15px;
+        }
     }
     .votes{
         display: flex;
@@ -48,9 +61,20 @@ const CardContainer = styled.div`
         font-size: 1em;
         font-weight: 600;
         button{
-            font-size: 1em;
+            padding: 5px;
+            font-size: 0.9em;
             font-weight: 600;
+            .icon{
+                font-size: large;
+                margin-right: 3px;
+            }
         }
+    }
+    .body{
+        margin: 0 15px;
+        font-weight: 500;
+        word-break: break-all;
+        font-size: 1.1em;
     }
 `
 
@@ -75,8 +99,8 @@ export const PostCard = (props) => {
     }
 
     const buttonText = <div style={{display: 'flex', alignItems: 'center',}}>
-        <p>{props.commentCount ? props.commentCount : 0}</p> 
-        <AiOutlineComment/>
+        <AiOutlineComment className="icon"/>
+        <p>{props.commentCount ? props.commentCount : 0} {props.commentCount === '1' ? 'comentário' : 'comentários'}</p> 
         </div>
  
     const vote = (direction) => {
@@ -99,21 +123,27 @@ export const PostCard = (props) => {
     const calculateTime = () => {
         const postTime = new Date(props.createdAt)
         const timeInMinutes = (parseInt(((today - postTime) / 1000) / 60))
-        if (timeInMinutes < 60){
-            return `${timeInMinutes} minutos`
+        if (timeInMinutes === 0) return `agora`
+        else if (timeInMinutes === 1) return `há 1 minuto`
+        else if (timeInMinutes < 60){
+            return `há ${timeInMinutes} minutos`
         } else if (timeInMinutes >= 60 && timeInMinutes < 120){
-            return `1 hora`
+            return `há 1 hora`
         } else if (timeInMinutes >= 120 && timeInMinutes < 2280){
-            return `${parseInt(timeInMinutes / 60)} horas`
-        } else return `${parseInt((timeInMinutes / 60) / 24)} dias`
+            return `há ${parseInt(timeInMinutes / 60)} horas`
+        } else return `há ${parseInt((timeInMinutes / 60) / 24)} dias`
     }
 
 
     return <CardContainer>
-        <p className="user">User: {props.username}</p>
-        <p className="date">{calculateTime()} atrás.</p>
-        <p className="title">Title: {props.title}</p>
-        <p className="body">Body: {props.body}</p>
+
+        <div className="header">
+            <p className="title">{props.title.substring(0, 20)}</p>
+            <p>enviado por <u> <FaUserAstronaut/>{props.username}</u> {calculateTime()}</p>            
+        </div>
+
+        <p className="body">{props.body}</p>
+
         <div className="footer"> 
 
             <div className="votes">
@@ -126,13 +156,15 @@ export const PostCard = (props) => {
                 <StyledIcon onClick={() => vote(-1)}>
                     {props.userVote === -1 ? <BsArrowDownCircleFill/> : <BsArrowDownCircle/>}
                 </StyledIcon> 
+
+                <ClassicButton id={props.id} text={buttonText} onClick={clickDetails}/>
             </div>
 
-            <ClassicButton id={props.id} text={buttonText} onClick={clickDetails}/>
+
 
         </div>
 
-        {commenting ? <AnimateDiv> <Post postId={props.id}/> </AnimateDiv> : <></>}
+        {commenting ? <AnimateDiv commentCount={props.commentCount}> <Post postId={props.id} commentCount={props.commentCount}/> </AnimateDiv> : <></>}
        
     </CardContainer>
 }

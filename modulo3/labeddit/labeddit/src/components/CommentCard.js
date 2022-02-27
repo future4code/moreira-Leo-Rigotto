@@ -2,38 +2,60 @@ import styled from "styled-components"
 import { BsArrowDownCircle, BsArrowDownCircleFill, BsArrowUpCircleFill, BsArrowUpCircle } from "react-icons/bs"
 import axios from "axios"
 import { BASE_URL } from "../services/urls"
+import {FaUserCircle} from "react-icons/fa"
 
-const CardContainer = styled.div`
-    background-color: lightgray;
+const CommentContainer = styled.div`
     display: flex;
     flex-direction: column;
     border: 1px solid lightgrey;
-    border-radius: 15px;
-    margin: 10px 0; 
-    padding: 0 10px;
-    .user{
-        align-self: center;
-        margin: 10px 0;
+    transition: 500ms ease;
+    background-color: whitesmoke;
+    .header{
+        background-color: white;
+        margin: 0;
+        padding: 5px;
+        display: flex;
+        align-items: center;
+        font-weight: 600;
+        border-bottom: 1px solid lightgray;
+        p{
+            margin-left: 5px;
+            color: black;
+            font-size: 1em;
+        }
+        .time{
+            font-size: 0.7em;
+            color: gray;
+        }
+    }
+    .comment{
+        display: flex;
+        align-items: center;
+        padding: 5px;
+        margin: 0;
     }
     .votes{
         display: flex;
         align-items: center;
+        p{
+            font-weight: 500;
+        }
+    }
+    .body{
+        font-weight: 500;
+        font-size: 1em;
+        word-break: break-all;
     }
 `
 
 const StyledIcon = styled.div`
     cursor: pointer;
-    margin: 5px;
+    margin: 0 5px;
     transition: 300ms ease;
-    border-radius: 20px;
-    :hover{
-        background-color: gray;
-        border-radius: 20px;
-        color: white;
-    }
+    border-radius: 50px;
     :active{
-        background-color: black;
         color: white;
+        background-color: black;
     }
 `
 
@@ -53,21 +75,47 @@ export const CommentCard = (props) => {
         }
     }
 
+
+    let today = new Date()
+
+    const calculateTime = () => {
+        const postTime = new Date(props.createdAt)
+        const timeInMinutes = (parseInt(((today - postTime) / 1000) / 60))
+        if (timeInMinutes === 0) return `agora`
+        else if (timeInMinutes === 1) return `há 1 minuto`
+        else if (timeInMinutes < 60){
+            return `há ${timeInMinutes} minutos`
+        } else if (timeInMinutes >= 60 && timeInMinutes < 120){
+            return `há 1 hora`
+        } else if (timeInMinutes >= 120 && timeInMinutes < 2280){
+            return `há ${parseInt(timeInMinutes / 60)} horas`
+        } else return `há ${parseInt((timeInMinutes / 60) / 24)} dias`
+    }
  
-    return <CardContainer>
-        <p className="user">User: {props.username}</p>
-        <p className="date">Created at: {props.createdAt}</p>
-        <p className="body">Body: {props.body}</p>
-        <div className="votes"> 
-            <StyledIcon onClick={() => vote(1)}>
-                {props.userVote === 1 ? <BsArrowUpCircleFill/> : <BsArrowUpCircle/>}
-            </StyledIcon>     
-            <p>
-                {props.voteSum ? props.voteSum : 0}
-            </p>
-            <StyledIcon onClick={() => vote(-1)}>
-                {props.userVote === -1 ? <BsArrowDownCircleFill/> : <BsArrowDownCircle/>}
-            </StyledIcon> 
+    return <CommentContainer>
+        <div className="header">
+        <FaUserCircle/>
+        <p>{props.username}</p>     
+        <p className="time">- {calculateTime()}</p>       
         </div>
-    </CardContainer>
+
+        <div className="comment">
+            <div className="votes">
+                <StyledIcon onClick={() => vote(1)}>
+                    {props.userVote === 1 ? <BsArrowUpCircleFill/> : <BsArrowUpCircle/>}
+                </StyledIcon>     
+                <p>
+                    {props.voteSum ? props.voteSum : 0}
+                </p>
+                <StyledIcon onClick={() => vote(-1)}>
+                    {props.userVote === -1 ? <BsArrowDownCircleFill/> : <BsArrowDownCircle/>}
+                </StyledIcon> 
+            </div>
+            <p className="body">{props.body}</p>
+        </div>
+
+ 
+
+        
+    </CommentContainer>
 }
