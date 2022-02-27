@@ -1,16 +1,16 @@
 import { useState } from "react"
 
- export const useForm = (initialState) => {
-     const [form, setForm] = useState(initialState)
+export const useForm = (initialState) => {
+  const [form, setForm] = useState(initialState)
 
-     const handleChange = (e) => {
-         const {name, value} = e.target
-         setForm({...form, [name]: value})
-     }
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setForm({ ...form, [name]: value })
+  }
 
-     const clearForm = () => {
-         setForm(initialState)
-     }
+  const clearForm = () => {
+    setForm(initialState)
+  }
 
-     return {form, handleChange, clearForm}
- } 
+  return { form, handleChange, clearForm }
+}
