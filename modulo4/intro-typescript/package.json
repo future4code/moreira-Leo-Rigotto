@@ -1,0 +1,20 @@
+{
+  "name": "intro-typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc && node ./build/index.js",
+    "exercicio-um": "clear && node ./build/exercicioUm.js",
+    "exercicio-dois": "clear && node ./build/exercicioDois.js",
+    "exercicio-tres": "clear && node ./build/exercicioTres.js",
+    "exercicio-quatro": "clear && node ./build/exercicioQuatro.js",
+    "exercicio-um-cinco": "clear && node ./build/exercicioCinco.js"
+  },
+  "keywords": [],
+  "author": "Leo Rigotto",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^4.6.2"
+  }
+}
