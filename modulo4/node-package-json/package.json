@@ -1,0 +1,14 @@
+{
+  "name": "package-json",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "name-age": "clear && node name-age.js Leo 31",
+    "calc": "clear && node calc.js mult 4 60",
+    "task-manager": "clear && node task-manager.js 'Comprar pao'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
