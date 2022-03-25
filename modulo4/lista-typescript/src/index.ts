@@ -1,0 +1,4 @@
+//  LISTA TYPESCRIPT
+
+// ex.1
+
