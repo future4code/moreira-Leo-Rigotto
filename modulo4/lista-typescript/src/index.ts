@@ -1,21 +1,21 @@
 //  LISTA TYPESCRIPT
 
-// ex.1
+// EX.1
 
 const hail = (userName: string, birthDate: string): string => {
   const date: string[] = birthDate.split("/")
-  return `Ex1: Olá, me chamo ${userName}, nasci no dia ${date[0]} do mês ${date[1]} do ano de ${date[2]}`
+  return `EX1: Olá, me chamo ${userName}, nasci no dia ${date[0]} do mês ${date[1]} do ano de ${date[2]}`
 }
 console.log(hail("Leo", "04/03/1991"))
 
-// ex. 2
+// EX. 2
 
 const printType = (input: any): void => {
-  console.log("Ex2:", typeof input)
+  console.log("EX2:", typeof input)
 }
 printType(2)
 
-// ex.3
+// EX.3
 
 enum GENERO {
   ACAO = "ação",
@@ -36,9 +36,9 @@ const pulpFiction: Movie = {
   category: GENERO.DRAMA,
   rating: "4.5 estrelas",
 }
-console.log("Ex3: ", pulpFiction)
+console.log("EX3: ", pulpFiction)
 
-// ex. 4
+// EX. 4
 
 enum SECTOR {
   MKT = "marketing",
@@ -65,9 +65,9 @@ const worksInPerson = (arr: Employee[]): Employee[] => {
     return employee.presencial === true
   })
 }
-console.log("Ex4: ", worksInPerson(employees))
+console.log("EX4: ", worksInPerson(employees))
 
-// ex. 5
+// EX. 5
 
 type User = {
   name: string
@@ -91,9 +91,9 @@ const isAdminEmail = (arr: User[]): string[] => {
       return user.email
     })
 }
-console.log("Ex5: ", isAdminEmail(users))
+console.log("EX5: ", isAdminEmail(users))
 
-//  ex. 6
+//  EX. 6
 
 type Account = {
   cliente: string
@@ -120,47 +120,47 @@ const needsCredit = (arr: Account[]): Account[] => {
   })
 }
 
-console.log("Ex6: ", needsCredit(accounts))
+console.log("EX6: ", needsCredit(accounts))
 
-// ex. 7
+// EX. 7
 
 type Product = {
   nome: string
   quantidade: number
-  valorUnitario: number | string
+  valueUnitario: number | string
 }
 
 const products: Product[] = [
-  { nome: "MacMugffin", quantidade: 37, valorUnitario: 51.04 },
-  { nome: "Vassoura voadora", quantidade: 56, valorUnitario: 210.0 },
-  { nome: "Laço da verdade", quantidade: 32, valorUnitario: 571.5 },
-  { nome: "O precioso", quantidade: 1, valorUnitario: 9181.923 },
-  { nome: "Caneta de 250 cores", quantidade: 123, valorUnitario: 17 },
-  { nome: "Plumbus", quantidade: 13, valorUnitario: 140.44 },
-  { nome: "Pokebola", quantidade: 200, valorUnitario: 99.9915 },
+  { nome: "MacMugffin", quantidade: 37, valueUnitario: 51.04 },
+  { nome: "Vassoura voadora", quantidade: 56, valueUnitario: 210.0 },
+  { nome: "Laço da verdade", quantidade: 32, valueUnitario: 571.5 },
+  { nome: "O precioso", quantidade: 1, valueUnitario: 9181.923 },
+  { nome: "Caneta de 250 cores", quantidade: 123, valueUnitario: 17 },
+  { nome: "Plumbus", quantidade: 13, valueUnitario: 140.44 },
+  { nome: "Pokebola", quantidade: 200, valueUnitario: 99.9915 },
 ]
 
 const ajustaPreco = (preco: number): string => {
-  const valorAjustado: string = preco.toFixed(2).replace(".", ",")
-  return "R$ " + valorAjustado
+  const valueAjustado: string = preco.toFixed(2).replace(".", ",")
+  return "R$ " + valueAjustado
 }
 
 const sortProducts = (arr: Product[]): Product[] => {
   return arr
     .map((product) => {
-      product.valorUnitario = ajustaPreco(product.valorUnitario as number)
+      product.valueUnitario = ajustaPreco(product.valueUnitario as number)
       return product
     })
     .sort((a, b) => a.quantidade - b.quantidade)
 }
 
-console.log("Ex7: ", sortProducts(products))
+console.log("EX7: ", sortProducts(products))
 
-// ex. 8
+// EX. 8
 
-console.log("Ex. 8: ")
+console.log("EX. 8: ")
 
-// ex. 9
+// EX. 9
 
 const calculateAnagrams = (word: string): number => {
   let anagrams: number = word.length
@@ -170,9 +170,9 @@ const calculateAnagrams = (word: string): number => {
   return anagrams
 }
 
-console.log("Ex. 9: ", calculateAnagrams("computador"))
+console.log("EX. 9: ", calculateAnagrams("computador"))
 
-// ex. 10
+// EX. 10
 
 const validateCPF = (CPF: string): boolean => {
   let base: string[] = CPF.slice(0, -3).replace(/\./g, "").split("")
@@ -205,35 +205,42 @@ const validateCPF = (CPF: string): boolean => {
   return dvCheck
 }
 
-console.log("Ex10: ", validateCPF("151.156.321-01"))
+console.log("EX10: ", validateCPF("394.171.128-80"))
 
-// ex. 11
+// EX. 11
 
 const convertToRoman = (num: number): string => {
   type Char = {
-    letra: string
-    valor: number
+    char: string
+    value: number
   }
 
   const dictionary: Char[] = [
-    { letra: "M", valor: 1000 },
-    { letra: "CM", valor: 900 },
-    { letra: "D", valor: 500 },
-    { letra: "CD", valor: 400 },
-    { letra: "C", valor: 100 },
-    { letra: "XC", valor: 90 },
-    { letra: "L", valor: 50 },
-    { letra: "XL", valor: 40 },
-    { letra: "C", valor: 10 },
-    { letra: "IX", valor: 9 },
-    { letra: "V", valor: 5 },
-    { letra: "IV", valor: 4 },
-    { letra: "I", valor: 1 },
+    { char: "M", value: 1000 },
+    { char: "CM", value: 900 },
+    { char: "D", value: 500 },
+    { char: "CD", value: 400 },
+    { char: "C", value: 100 },
+    { char: "XC", value: 90 },
+    { char: "L", value: 50 },
+    { char: "XL", value: 40 },
+    { char: "C", value: 10 },
+    { char: "IX", value: 9 },
+    { char: "V", value: 5 },
+    { char: "IV", value: 4 },
+    { char: "I", value: 1 },
   ]
 
   let romanYear: string = ""
 
+  for (let i = 0; i < dictionary.length; i++) {
+    while (num - dictionary[i].value >= 0) {
+      romanYear = romanYear + dictionary[i].char
+      num -= dictionary[i].value
+    }
+  }
+
   return romanYear
 }
 
-console.log("Ex11: ", convertToRoman(2022))
+console.log("EX11: ", convertToRoman(2022))
