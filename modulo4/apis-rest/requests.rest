@@ -1,0 +1,25 @@
+GET http://localhost:3003/users
+Content-Type: application/json
+
+###
+
+GET http://localhost:3003/user?type=ADMIN
+Content-Type: application/json
+
+###
+
+GET http://localhost:3003/user?name=Alice
+Content-Type: application/json
+
+###
+
+POST http://localhost:3003/users
+Content-Type: application/json
+
+{
+   "id": 70,
+    "name": "Jorge",
+    "email": "jorjao@email.com",
+    "type": "NORMAL",
+    "age": 60
+}
